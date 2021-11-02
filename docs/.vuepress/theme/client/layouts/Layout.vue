@@ -32,7 +32,7 @@
     <slot name="page">
       <Home v-if="frontmatter.home" />
 
-      <Transition
+      <div
         v-else
         name="fade-slide-y"
         mode="out-in"
@@ -47,7 +47,7 @@
             <slot name="page-bottom" />
           </template>
         </Page>
-      </Transition>
+      </div>
     </slot>
   </div>
 </template>
