@@ -2,8 +2,10 @@ import { defineUserConfig } from 'vuepress'
 import type { DefaultThemeOptions } from 'vuepress'
 import { path } from '@vuepress/utils'
 
+const base = '/mastermind/'
+
 export default defineUserConfig<DefaultThemeOptions>({
-  base: '/mastermind/',
+  base,
   lang: 'zh-CN',
   title: '黎明杀机图鉴-卡里普索的迷雾笔记',
   description: '黎明杀机-非官方-个人向-图鉴资料站',
@@ -14,7 +16,7 @@ export default defineUserConfig<DefaultThemeOptions>({
         rel: 'icon',
         type: 'image/png',
         sizes: '16x16',
-        href: `/images/icons/favicon-16x16.png`,
+        href: `${base}images/icons/favicon-16x16.png`,
       },
     ],
     [
@@ -23,10 +25,10 @@ export default defineUserConfig<DefaultThemeOptions>({
         rel: 'icon',
         type: 'image/png',
         sizes: '32x32',
-        href: `/images/icons/favicon-32x32.png`,
+        href: `${base}images/icons/favicon-32x32.png`,
       },
     ],
-    ['link', { rel: 'manifest', href: '/app.webmanifest' }],
+    ['link', { rel: 'manifest', href: `${base}app.webmanifest` }],
     // ['meta', { name: 'application-name', content: 'VuePress' }],
     // ['meta', { name: 'apple-mobile-web-app-title', content: 'VuePress' }],
     [
@@ -35,13 +37,13 @@ export default defineUserConfig<DefaultThemeOptions>({
     ],
     [
       'link',
-      { rel: 'apple-touch-icon', href: `/images/icons/apple-touch-icon.png`, sizes: '180x180' },
+      { rel: 'apple-touch-icon', href: `${base}images/icons/apple-touch-icon.png`, sizes: '180x180' },
     ],
     [
       'link',
       {
         rel: 'mask-icon',
-        href: '/images/icons/safari-pinned-tab.svg',
+        href: `${base}images/icons/safari-pinned-tab.svg`,
         color: '#2b5797',
       },
     ],
