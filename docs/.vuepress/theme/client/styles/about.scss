@@ -1,0 +1,88 @@
+.about-author {
+  .content {
+    padding-left: 50%;
+
+    p {
+      margin: 0 !important;
+    }
+  }
+
+  #avatar {
+    position: absolute;
+    max-width: 40%;
+    max-height: 90%;
+    right: 55%;
+  }
+
+  #contact {
+    margin-top: 10em;
+    // display: inline-block;
+
+    .tips {
+      opacity: 0;
+      transform: translateY(-50%);
+      transition: all .25s;
+      position: absolute;
+      font-size: small;
+    }
+
+    &:hover .tips {
+      opacity: 1;
+      transform: translateY(-100%);
+    }
+  }
+}
+
+.about-thanks {
+  .content {
+    text-align: center;
+    min-width: 100vw;
+    box-sizing: border-box;
+
+    h1 {
+      font-size: 3rem;
+    }
+
+    h4 {
+      padding: 2rem 0;
+    }
+  }
+}
+
+.thx-card {
+  margin: 10px;
+  text-align: left;
+  position: relative;
+  display: inline-block;
+  background: var(--c-bg-lighter);
+  min-height: 125px;
+  padding: 5px;
+  padding-left: 135px;
+  // overflow: hidden;
+
+  img {
+    position: absolute;
+    width: 125px;
+    left: 5px;
+    top: 5px;
+  }
+
+  h2, p {
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  h2 {
+    border: none;
+  }
+
+  p:nth-of-type(n+3) {
+    font-size: 1.2rem;
+  }
+}
+
+.content .small {
+  font-size: small;
+  margin-top: 0;
+  margin-bottom: 0;
+}

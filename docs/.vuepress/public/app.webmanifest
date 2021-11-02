@@ -1,0 +1,21 @@
+{
+  "name": "黎明杀机图鉴-卡里普索的迷雾笔记",
+  "short_name": "黎明杀机图鉴",
+  "description": "黎明杀机-非官方-个人向-图鉴资料站",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#2b313a",
+  "theme_color": "#2b313a",
+  "icons": [
+    {
+      "src": "/images/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/icons/android-chrome-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+.page.wiki {
+  display: flex;
+  background: var(--c-bg-lighter);
+  padding-bottom: 0;
+  height: 100vh;
+  box-sizing: border-box;
+
+  .content {
+    flex: 1;
+    background: var(--c-bg);
+    overflow-y: auto;
+    overflow-y: overlay;
+
+    blockquote {
+      margin-top: -1rem;
+    }
+
+    .custom-container * {
+      font-size: 16px;
+    }
+  
+    div > p, ul {
+      line-height: 1.2;
+      font-size: 20px;
+    }
+    
+    h2 + p {
+      font-size: 16px;
+      font-weight: bold;
+      margin: -1em 0;
+      opacity: .8;
+    }
+  }
+
+  .list {
+    flex: 2;
+    margin: 0;
+    padding: 1em 40px;
+    overflow-y: auto;
+    overflow-y: overlay;
+    scroll-behavior: smooth;
+
+    h2 {
+      font-size: 20px;
+      border: none;
+      margin: 0;
+      font-weight: 400;
+    }
+  }
+
+  .list-container {
+    background: var(--c-bg);
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: flex-start;
+    // justify-content: space-evenly;
+
+    .item {
+      display: inline-block;
+      background-size: contain;
+      background-repeat: no-repeat;
+      position: relative;
+
+      &::before {
+        position: absolute;
+        display: block;
+        content: '';
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+}
+
+.page.wiki-perk {
+  .list-container {
+    justify-content: center;
+  }
+  
+  .item {
+    &::before {
+      height: 120px;
+      width: 120px;
+    }
+
+    &:hover::before {
+      background-image: url('/images/mouseSlipPerk.png');
+    }
+
+    &.selected::before {
+      background-image: url('/images/lockedPerk.png');
+    }
+
+    img {
+      width: 120px;
+    }
+  }
+}
+
+.page.wiki-item-killer {
+  .item {
+    &:hover::before {
+      background-image: url('/images/mouseSlipItem.png');
+    }
+
+    &.selected::before {
+      background-image: url('/images/lockedItem.png');
+    }
+
+    &::before {
+      height: 60px;
+      width: 60px;
+    }
+
+    img {
+      width: 60px;
+    }
+  }
+}
+
+.page.wiki-item-favor {
+  .list-container {
+    justify-content: center;
+  }
+
+  .item {
+    &:hover::before {
+      background-image: url('/images/mouseSlipFavors.png');
+    }
+
+    &.selected::before {
+      background-image: url('/images/lockedFavors.png');
+    }
+
+    &::before {
+      height: 100px;
+      width: 100px;
+    }
+
+    img {
+      width: 100px;
+    }
+  }
+}

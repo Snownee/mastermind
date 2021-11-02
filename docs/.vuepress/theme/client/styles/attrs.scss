@@ -1,0 +1,86 @@
+.red {
+  color: #e53935;
+}
+
+.pink {
+  color: #d81b60;
+}
+
+.purple {
+  color: #8e24aa;
+}
+
+.deeppurple {
+  color: #5e35b1;
+}
+
+.indigo {
+  color: #3949ab;
+}
+
+.blue {
+  color: #1e88e5;
+}
+
+.lightblue {
+  color: #039be5;
+}
+
+.cyan {
+  color: #00acc1;
+}
+
+.teal {
+  color: #00897b;
+}
+
+.green {
+  color: #43a047;
+}
+
+.lightgreen {
+  color: #7cb342;
+}
+
+.lime {
+  color: #c0ca33;
+}
+
+.yellow {
+  color: #fdd835;
+}
+
+.amber {
+  color: #ffb300;
+}
+
+.orange {
+  color: #fb8c00;
+}
+
+.deeporange {
+  color: #f4511e;
+}
+
+.brown {
+  color: #6d4c41;
+}
+
+.grey {
+  color: #757575;
+}
+
+.bluegrey {
+  color: #546e7a;
+}
+
+.heimu {
+  background-color: var(--c-text);
+  color: var(--c-text);
+  transition: background-color 0.3s;
+  border-radius: 3px;
+}
+
+.heimu:hover, .heimu:active {
+  background: #000;
+}
