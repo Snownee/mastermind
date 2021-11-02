@@ -60,7 +60,7 @@ export default defineUserConfig<DefaultThemeOptions>({
 
   plugins: [
     ['@vuepress/plugin-pwa'],
-    [ path.resolve(__dirname, 'plugins/attrs') ],
+    'vuepress-plugin-attrs',
     [ path.resolve(__dirname, 'plugins/info-processor') ],
   ],
 
