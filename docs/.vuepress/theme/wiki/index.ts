@@ -1,6 +1,6 @@
 import DOM from '@vue/compiler-dom'
 
-export const parse = (html: string): WikiCategory[] => {
+export const parse = (html: string, base: string): WikiCategory[] => {
   const root = DOM.parse(html)
   const cates: WikiCategory[] = []
   let cate = new WikiCategory()
@@ -35,7 +35,14 @@ export const parse = (html: string): WikiCategory[] => {
         if (el.children.length === 1 && el.children[0].type === 1) {
           var child = el.children[0] as DOM.ElementNode
           if (child.tag === 'img') {
-            info.icon = child.loc.source
+            for (const attr of child.props) {
+              if (attr['name'] === 'src') {
+                info.icon = attr['value']['content']
+                if (info.icon.startsWith('/')) {
+                  info.icon = base + info.icon.substr(1)
+                }
+              }
+            }
             continue
           }
         }

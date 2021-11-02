@@ -1,5 +1,7 @@
 <template>
-  <a v-html="info.icon" :href="'#'+info.head" class="item"></a>
+  <a :href="'#'+info.head" class="item">
+    <img :src="info.icon" :alt="info.head">
+  </a>
 </template>
 
 <script setup lang="ts">

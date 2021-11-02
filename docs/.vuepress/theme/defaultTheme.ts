@@ -45,10 +45,10 @@ export const defaultTheme: Theme<DefaultThemeOptions> = ({
     clientAppSetupFiles: path.resolve(__dirname, 'client/clientAppSetup.ts'),
 
     // use the relative file path to generate edit link
-    extendsPageData: ({ filePathRelative, contentRendered, frontmatter }) => {
+    extendsPageData: ({ filePathRelative, contentRendered, frontmatter }, app) => {
       const extraData : any = { filePathRelative }
       if (frontmatter.layout === 'Perk' || frontmatter.layout === 'Item') {
-        extraData.wikiInfos = Wiki.parse(contentRendered)
+        extraData.wikiInfos = Wiki.parse(contentRendered, app.options.base)
       }
       return extraData
     },
