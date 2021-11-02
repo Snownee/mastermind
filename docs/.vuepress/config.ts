@@ -44,11 +44,11 @@ export default defineUserConfig<DefaultThemeOptions>({
       {
         rel: 'mask-icon',
         href: `${base}images/icons/safari-pinned-tab.svg`,
-        color: '#2b5797',
+        color: '#262c34',
       },
     ],
-    ['meta', { name: 'msapplication-TileColor', content: '#2b5797' }],
-    ['meta', { name: 'theme-color', content: '#2b5797' }],
+    ['meta', { name: 'msapplication-TileColor', content: '#262c34' }],
+    ['meta', { name: 'theme-color', content: '#000000' }],
   ],
 
   bundler: '@vuepress/bundler-vite',

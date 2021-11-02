@@ -4,8 +4,8 @@
   "description": "黎明杀机-非官方-个人向-图鉴资料站",
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#2b313a",
-  "theme_color": "#2b313a",
+  "background_color": "#262c34",
+  "theme_color": "#262c34",
   "icons": [
     {
       "src": "/mastermind/images/icons/android-chrome-192x192.png",
