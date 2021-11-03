@@ -87,7 +87,7 @@ onMounted(() => {
   const handleLinksWrapWidth = (): void => {
     if (window.innerWidth <= MOBILE_DESKTOP_BREAKPOINT) {
       linksWrapperMaxWidth.value = 0
-    } else {
+    } else if (navbar.value) {
       linksWrapperMaxWidth.value =
         navbar.value!.offsetWidth -
         navbarHorizontalPadding -

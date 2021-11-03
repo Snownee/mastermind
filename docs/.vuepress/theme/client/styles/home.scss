@@ -9,6 +9,10 @@
   box-sizing: border-box;
   flex-direction: column;
 
+  .content {
+    text-align: center;
+  }
+
   .hero {
     text-align: center;
     flex: 1;
