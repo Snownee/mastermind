@@ -3,7 +3,7 @@ pageClass: about-author
 title: 关于作者
 ---
 
-![avatar](/images/about/yuriscat.jpg){#avatar}
+![avatar](/images/about/yuriscat.png){#avatar}
 
 ## 尤里的猫·卡里普索
 

@@ -43,7 +43,7 @@ export default defineUserConfig<DefaultThemeOptions>({
       'link',
       {
         rel: 'mask-icon',
-        href: `${base}images/icons/safari-pinned-tab.svg`,
+        href: `${base}safari-pinned-tab.svg`,
         color: '#262c34',
       },
     ],

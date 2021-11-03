@@ -73,8 +73,8 @@
 
 // plugin-back-to-top
 .back-to-top {
-  --back-to-top-color: var(--c-brand);
-  --back-to-top-color-hover: var(--c-brand-light);
+  --back-to-top-color: var(--c-text);
+  --back-to-top-color-hover: var(--c-text-lighter);
 }
 
 // plugin-docsearch
@@ -102,7 +102,7 @@
 
 // plugin-nprogress
 #nprogress {
-  --nprogress-color: var(--c-brand);
+  --nprogress-color: var(--c-text-lighter);
 }
 
 // plugin-pwa-popup
