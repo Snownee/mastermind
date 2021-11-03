@@ -1,3 +1,5 @@
+@import '_variables';
+
 .page.wiki {
   display: flex;
   background: var(--c-bg-lighter);
@@ -11,6 +13,14 @@
     overflow-y: auto;
     overflow-y: overlay;
 
+    @media (max-width: ($MQMobile)) {
+      display: none;
+      position: absolute;
+      bottom: 0;
+      z-index: 6;
+      max-height: 61vh;
+    }
+
     blockquote {
       margin-top: -1rem;
     }
@@ -18,17 +28,18 @@
     .custom-container * {
       font-size: 16px;
     }
-  
-    div > p, ul {
+
+    div > p,
+    ul {
       line-height: 1.2;
       font-size: 20px;
     }
-    
+
     h2 + p {
       font-size: 16px;
       font-weight: bold;
       margin: -1em 0;
-      opacity: .8;
+      opacity: 0.8;
     }
   }
 
@@ -39,6 +50,10 @@
     overflow-y: auto;
     overflow-y: overlay;
     scroll-behavior: smooth;
+
+    @media (max-width: ($MQMobile)) {
+      padding: 1em 1em;
+    }
 
     h2 {
       font-size: 20px;
@@ -70,6 +85,12 @@
         background-size: contain;
         background-repeat: no-repeat;
       }
+
+      img,
+      &::before {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 }
@@ -78,11 +99,14 @@
   .list-container {
     justify-content: center;
   }
-  
+
   .item {
-    &::before {
-      height: 120px;
-      width: 120px;
+    height: 120px;
+    width: 120px;
+
+    @media (max-width: ($MQMobile)) {
+      height: 70px;
+      width: 70px;
     }
 
     &:hover::before {
@@ -92,32 +116,20 @@
     &.selected::before {
       background-image: url('/images/lockedPerk.png');
     }
-
-    img {
-      height: 120px;
-      width: 120px;
-    }
   }
 }
 
 .page.wiki-item-killer {
   .item {
+    height: 60px;
+    width: 60px;
+
     &:hover::before {
       background-image: url('/images/mouseSlipItem.png');
     }
 
     &.selected::before {
       background-image: url('/images/lockedItem.png');
-    }
-
-    &::before {
-      height: 60px;
-      width: 60px;
-    }
-
-    img {
-      height: 60px;
-      width: 60px;
     }
   }
 }
@@ -128,22 +140,15 @@
   }
 
   .item {
+    height: 100px;
+    width: 100px;
+
     &:hover::before {
       background-image: url('/images/mouseSlipFavors.png');
     }
 
     &.selected::before {
       background-image: url('/images/lockedFavors.png');
-    }
-
-    &::before {
-      height: 100px;
-      width: 100px;
-    }
-
-    img {
-      height: 100px;
-      width: 100px;
     }
   }
 }

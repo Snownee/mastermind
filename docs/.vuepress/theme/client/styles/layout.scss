@@ -35,7 +35,10 @@
   scrollbar-color: var(--c-brand) var(--c-border);
   background-color: var(--c-bg-sidebar);
   transition: transform var(--t-transform), background-color var(--t-color),
-    border-color var(--t-color);
+  border-color var(--t-color);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
   &::-webkit-scrollbar {
     width: 7px;
   }

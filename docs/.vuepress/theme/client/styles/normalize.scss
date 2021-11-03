@@ -1,3 +1,5 @@
+@import '_variables';
+
 html,
 body {
   padding: 0;
@@ -9,9 +11,9 @@ body {
   overflow-x: hidden;
 }
 
-html.dark {
-  color-scheme: dark;
-}
+// html.dark {
+//   color-scheme: dark;
+// }
 
 body {
   font-family: var(--font-family);
@@ -166,8 +168,13 @@ td {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
+
+  @media (max-width: ($MQMobile)) {
+    width: 3px;
+  }
 }
+
 
 ::-webkit-scrollbar-track {
   background: none; 

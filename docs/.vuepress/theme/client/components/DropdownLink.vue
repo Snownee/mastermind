@@ -17,11 +17,11 @@
       @click="open = !open"
     >
       <span class="title">{{ item.text }}</span>
-      <span class="arrow" :class="open ? 'down' : 'right'" />
+      <!-- <span class="arrow" :class="open ? 'down' : 'right'" /> -->
     </button>
 
     <DropdownTransition>
-      <ul v-show="open" class="nav-dropdown">
+      <ul class="nav-dropdown">
         <li
           v-for="(child, index) in item.children"
           :key="child.link || index"

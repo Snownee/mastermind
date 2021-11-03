@@ -1,3 +1,7 @@
+---
+pageClass: about-changelog
+---
+
 # 网站日志
 
 ![](/images/handbook.png){style=float:right}

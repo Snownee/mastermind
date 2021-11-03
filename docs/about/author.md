@@ -3,15 +3,15 @@ pageClass: about-author
 title: 关于作者
 ---
 
-![avatar](/images/about/yuriscat.png){#avatar}
-
 ## 尤里的猫·卡里普索
+
+![avatar](/images/about/yuriscat.png){#avatar}
 
 Calypso
 
 玩家、独立游戏开发者、模组制作者、教程编写者。
 
-<div style="height: 100px" aria-hidden="true"></div>
+<div class="spacer" aria-hidden="true"></div>
 
 > *“玩一款游戏超过数百个小时，我就会开始想能不能做做模组或是写写教程。让我的所作所为更加有意义一点。”*
 

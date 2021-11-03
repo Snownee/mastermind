@@ -1,3 +1,5 @@
+@import '_variables';
+
 .about-author {
   .content {
     padding-left: 50%;
@@ -7,28 +9,49 @@
     }
   }
 
+  @media (min-width: ($MQMobile + 1)) {
+    .spacer {
+      height: 100px;
+    }
+  }
+
   #avatar {
     position: absolute;
     max-width: 40%;
-    max-height: 90%;
+    max-height: 80%;
     right: 55%;
   }
 
   #contact {
-    margin-top: 10em;
-    // display: inline-block;
-
     .tips {
       opacity: 0;
-      transform: translateY(-50%);
       transition: all .25s;
-      position: absolute;
       font-size: small;
+      transform: translateY(50%);
     }
 
     &:hover .tips {
       opacity: 1;
-      transform: translateY(-100%);
+      transform: translateY(0%);
+    }
+  }
+
+  @media (max-width: ($MQMobile)) {
+    #contact {
+      .tips {
+        position: absolute;
+        right: 55%;
+        bottom: 0;
+        width: 40%;
+      }
+    }
+    
+    #avatar {
+      transform: translateY(-4rem);
+      position: absolute;
+      max-width: 40%;
+      max-height: 80%;
+      right: 55%;
     }
   }
 }
@@ -79,10 +102,22 @@
   p:nth-of-type(n+3) {
     font-size: 1.2rem;
   }
+  
+  @media (max-width: ($MQMobile)) {
+    display: block;
+  }
 }
 
 .content .small {
   font-size: small;
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.about-changelog {
+  .content {
+    img {
+      max-width: 40vw;
+    }
+  }
 }
