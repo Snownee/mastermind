@@ -1,5 +1,36 @@
 @import '_variables';
 
+#content-mask {
+  flex: 1;
+  
+  .mobile & {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: fixed;
+    height: 200vh;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    transition-property: background-color, margin-bottom;
+    transition-duration: 0.3s;
+    background: rgba(0,0,0,.5);
+
+    &.hide {
+      margin-bottom: -100vh;
+      background: none;
+      animation: content-mask 0s ease 0.3s forwards;
+    }
+  }
+}
+
+@keyframes content-mask {
+  to {
+      height: 100vh;
+  }
+}
+
 .page.wiki {
   display: flex;
   background: var(--c-bg-lighter);
@@ -7,18 +38,40 @@
   height: 100vh;
   box-sizing: border-box;
 
+  .icon {
+    display: none;
+    width: 100px;
+    overflow: visible;
+    transition: opacity 0.3s ease;
+
+    .mobile & {
+      position: absolute;
+      display: block;
+      margin-top: -40px;
+    }
+
+    &.hide {
+      opacity: 0;
+    }
+  }
+
   .content {
-    flex: 1;
+    box-sizing: border-box;
     background: var(--c-bg);
     overflow-y: auto;
     overflow-y: overlay;
+    height: 100%;
 
-    @media (max-width: ($MQMobile)) {
-      display: none;
-      position: absolute;
-      bottom: 0;
+    .mobile & {
       z-index: 6;
-      max-height: 61vh;
+      max-height: 60vh;
+      height: auto;
+      width: 100%;
+      // position: relative;
+
+      h2 {
+        padding-left: 105px;
+      }
     }
 
     blockquote {
@@ -65,7 +118,7 @@
 
   .list-container {
     background: var(--c-bg);
-    padding: 10px;
+    padding: 1rem 10px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -103,6 +156,8 @@
   .item {
     height: 120px;
     width: 120px;
+    margin: -0.5rem 0;
+    border-radius: 50%;
 
     @media (max-width: ($MQMobile)) {
       height: 70px;

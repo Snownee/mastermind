@@ -39,9 +39,12 @@
         <main class="page wiki wiki-perk">
           <slot name="top" />
 
-          <WikiContent :info="list?.currentInfo"/>
-          <WikiList ref="list"/>
-          
+          <WikiContent
+            :info="mobile ? list?.selectedInfo : list?.currentInfo"
+            @click="clickContent($event, list)"
+          />
+          <WikiList ref="list" />
+
           <slot name="bottom" />
         </main>
       </Transition>
@@ -50,69 +53,87 @@
 </template>
 
 <script setup lang="ts">
-import { usePageData, usePageFrontmatter } from '@vuepress/client'
-import { unrefElement } from '@vueuse/core'
-import { computed, onMounted, onUnmounted, onUpdated, ref, Transition } from 'vue'
-import { useRouter } from 'vue-router'
-import type { DefaultThemePageFrontmatter } from '../../shared'
-import Navbar from '../components/Navbar.vue'
-import Sidebar from '../components/Sidebar.vue'
-import WikiContent from '../components/WikiContent.vue'
-import WikiList from '../components/WikiList.vue'
+import { usePageData, usePageFrontmatter } from "@vuepress/client";
+import { unrefElement } from "@vueuse/core";
+import {
+  computed,
+  onMounted,
+  onUnmounted,
+  onUpdated,
+  ref,
+  Transition,
+} from "vue";
+import { useRouter } from "vue-router";
+import type { DefaultThemePageFrontmatter } from "../../shared";
+import Navbar from "../components/Navbar.vue";
+import Sidebar from "../components/Sidebar.vue";
+import WikiContent from "../components/WikiContent.vue";
+import WikiList from "../components/WikiList.vue";
 import {
   useScrollPromise,
   useSidebarItems,
   useThemeLocaleData,
-} from '../composables'
+} from "../composables";
 
-const page = usePageData()
+const page = usePageData();
 //console.log(page.value.wikiInfos);
 
-const frontmatter = usePageFrontmatter<DefaultThemePageFrontmatter>()
-const themeLocale = useThemeLocaleData()
+const frontmatter = usePageFrontmatter<DefaultThemePageFrontmatter>();
+const themeLocale = useThemeLocaleData();
 
 // navbar
 const shouldShowNavbar = computed(
   () => frontmatter.value.navbar !== false && themeLocale.value.navbar !== false
-)
+);
 
 // sidebar
-const sidebarItems = useSidebarItems()
-const isSidebarOpen = ref(false)
+const sidebarItems = useSidebarItems();
+const isSidebarOpen = ref(false);
 const toggleSidebar = (to?: boolean): void => {
-  isSidebarOpen.value = typeof to === 'boolean' ? to : !isSidebarOpen.value
-}
-const touchStart = { x: 0, y: 0 }
+  isSidebarOpen.value = typeof to === "boolean" ? to : !isSidebarOpen.value;
+};
+const touchStart = { x: 0, y: 0 };
 const onTouchStart = (e): void => {
-  touchStart.x = e.changedTouches[0].clientX
-  touchStart.y = e.changedTouches[0].clientY
-}
+  touchStart.x = e.changedTouches[0].clientX;
+  touchStart.y = e.changedTouches[0].clientY;
+};
 const onTouchEnd = (e): void => {
-  const dx = e.changedTouches[0].clientX - touchStart.x
-  const dy = e.changedTouches[0].clientY - touchStart.y
+  const dx = e.changedTouches[0].clientX - touchStart.x;
+  const dy = e.changedTouches[0].clientY - touchStart.y;
   if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
     if (dx > 0 && touchStart.x <= 80) {
-      toggleSidebar(true)
+      toggleSidebar(true);
     } else {
-      toggleSidebar(false)
+      toggleSidebar(false);
     }
   }
-}
+};
+
+const mobile = ref(false);
 
 // classes
 const containerClass = computed(() => [
   {
-    'no-navbar': !shouldShowNavbar.value,
-    'no-sidebar': !sidebarItems.value.length,
-    'sidebar-open': isSidebarOpen.value,
+    "no-navbar": !shouldShowNavbar.value,
+    "no-sidebar": !sidebarItems.value.length,
+    "sidebar-open": isSidebarOpen.value,
   },
   frontmatter.value.pageClass,
-])
+  {
+    mobile: mobile.value,
+  },
+]);
 
-const list = ref<HTMLElement>(null)
+const list = ref<HTMLElement | null>(null);
 
 const resize = () => {
-  const container = unrefElement(list).firstElementChild.firstElementChild
+  const MOBILE_DESKTOP_BREAKPOINT = 719;
+  mobile.value = window.innerWidth <= MOBILE_DESKTOP_BREAKPOINT;
+
+  const container = unrefElement(list)?.firstElementChild?.firstElementChild;
+  if (!container) {
+    return;
+  }
   const children = container.children;
   if (children.length === 0) {
     return;
@@ -123,16 +144,23 @@ const resize = () => {
   let line = 1;
   let itemsOfLine = 0;
   for (let i = 0; i < children.length; i++) {
-    const item: HTMLElement = children[i] as HTMLElement;
-    item.style.marginLeft = '';
-    item.style.marginRight = '';
+    const item = children[i] as HTMLElement;
+    item.style.marginLeft = "";
+    item.style.marginRight = "";
     ++itemsOfLine;
-    if (itemsPerLine > 2 && line % 2 === 0) {
+    if (i === children.length - 1) {
+      let space = itemsPerLine - itemsOfLine;
+      if (line % 2 === 0) {
+        space -= 0.5;
+      }
+      item.style.marginRight = width * space + "px";
+    }
+    if (line % 2 === 0) {
       if (itemsOfLine === 1) {
-        item.style.marginLeft = width / 2 + 'px';
+        item.style.marginLeft = width * 0.5 + "px";
       }
       if (itemsOfLine === itemsPerLine - 1) {
-        item.style.marginRight = width / 2 + 'px';
+        item.style.marginRight = width * 0.5 + "px";
         itemsOfLine = 0;
         ++line;
       }
@@ -141,30 +169,36 @@ const resize = () => {
       ++line;
     }
   }
-}
+};
 
 // close sidebar after navigation
-let unregisterRouterHook
+let unregisterRouterHook;
 onMounted(() => {
   window.addEventListener("resize", resize, false);
   window.addEventListener("orientationchange", resize, false);
-  resize()
-  const router = useRouter()
+  resize();
+  const router = useRouter();
   unregisterRouterHook = router.afterEach(() => {
-    toggleSidebar(false)
-  })
-})
+    toggleSidebar(false);
+  });
+});
 onUpdated(() => {
-  resize()
-})
+  resize();
+});
 onUnmounted(() => {
   window.removeEventListener("resize", resize, false);
   window.removeEventListener("orientationchange", resize, false);
-  unregisterRouterHook()
-})
+  unregisterRouterHook();
+});
 
 // handle scrollBehavior with transition
-const scrollPromise = useScrollPromise()
-const onBeforeEnter = scrollPromise.resolve
-const onBeforeLeave = scrollPromise.pending
+const scrollPromise = useScrollPromise();
+const onBeforeEnter = scrollPromise.resolve;
+const onBeforeLeave = scrollPromise.pending;
+
+const clickContent = (event: PointerEvent, list: WikiList | null) => {
+  if (mobile.value && event.target && event.target['id'] === 'content-mask') {
+    list?.click(null);
+  }
+};
 </script>

@@ -44,19 +44,23 @@ const useWikiInfos = () => {
 };
 
 const cates = useWikiInfos();
-let currentInfo: Ref<WikiInfo> = ref(cates.value[0].infos[0]);
-let selectedInfo: Ref<WikiInfo> = ref(null);
+let currentInfo: Ref<WikiInfo | null> = ref(cates.value![0].infos[0]);
+let selectedInfo: Ref<WikiInfo | null> = ref(null);
 
 const click = (info: WikiInfo) => {
   if (selectedInfo.value === info) {
     selectedInfo.value = null;
-    info.classes.selected = false;
+    if (info) {
+      info.classes.selected = false;
+    }
   } else {
-    if (selectedInfo.value !== null) {
+    if (selectedInfo.value) {
       selectedInfo.value.classes.selected = false;
     }
     selectedInfo.value = info;
-    info.classes.selected = true;
+    if (info) {
+      info.classes.selected = true;
+    }
   }
   currentInfo.value = info;
 };
@@ -67,22 +71,22 @@ const mouseover = (info: WikiInfo) => {
   }
 };
 
-const root: Ref<HTMLElement> = ref(null);
+const root: Ref<HTMLElement | null> = ref(null);
 
 onMounted(() => {
   const parts = document.URL.split("#");
   if (parts.length > 1) {
     const anchor = decodeURI(parts[1]);
-    for (const cate of cates.value) {
+    for (const cate of cates.value!) {
       for (const info of cate.infos) {
         if (info.head === anchor) {
           click(info);
           const el = unrefElement(
-            getCurrentInstance().refs[info.head] as MaybeElementRef
+            getCurrentInstance()!.refs[info.head] as MaybeElementRef
           );
           const docRect = document.documentElement.getBoundingClientRect();
-          const elRect = el.getBoundingClientRect();
-          root.value.scrollTo(
+          const elRect = el!.getBoundingClientRect();
+          root.value!.scrollTo(
             elRect.left - docRect.left - elRect.width / 2,
             elRect.top - docRect.top - elRect.height / 2
           );
@@ -93,5 +97,5 @@ onMounted(() => {
   }
 });
 
-defineExpose({ currentInfo });
+defineExpose({ currentInfo, selectedInfo, click });
 </script>
