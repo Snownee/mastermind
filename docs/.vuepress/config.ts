@@ -62,6 +62,17 @@ export default defineUserConfig<DefaultThemeOptions>({
 
   plugins: [
     ['@vuepress/plugin-pwa'],
+    [
+      '@vuepress/plugin-pwa-popup',
+      {
+        locales: {
+          '/': {
+            message: '发现新内容可用',
+            buttonText: '刷新',
+          },
+        },
+      },
+    ],
     'vuepress-plugin-attrs',
     [ path.resolve(__dirname, 'plugins/info-processor') ],
   ],
