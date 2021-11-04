@@ -19,14 +19,14 @@ export default defineClientAppEnhance(({ app, router }) => {
   app.component('OutboundLink', OutboundLink)
 
   // compat with @vuepress/plugin-docsearch and @vuepress/plugin-search
-  app.component('NavbarSearch', () => {
-    const SearchComponent =
-      app.component('Docsearch') || app.component('SearchBox')
-    if (SearchComponent) {
-      return h(SearchComponent)
-    }
-    return null
-  })
+  // app.component('NavbarSearch', () => {
+  //   const SearchComponent =
+  //     app.component('Docsearch') || app.component('SearchBox')
+  //   if (SearchComponent) {
+  //     return h(SearchComponent)
+  //   }
+  //   return null
+  // })
 
   // handle scrollBehavior with transition
   const scrollBehavior = router.options.scrollBehavior!

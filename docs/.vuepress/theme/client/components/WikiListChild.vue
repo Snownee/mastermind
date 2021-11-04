@@ -1,5 +1,5 @@
 <template>
-  <a :href="'#'+info.head" class="item">
+  <a :href="'#'+info.head" class="item" :class="info.classes">
     <img :src="info.icon" :alt="info.head">
   </a>
 </template>

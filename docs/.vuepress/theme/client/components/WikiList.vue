@@ -10,7 +10,6 @@
             v-for="info in cate.infos"
             :info="info"
             :key="info"
-            :class="info.classes"
             :ref="info.head"
             @click="click(info)"
             @mouseover="mouseover(info)"
@@ -22,8 +21,6 @@
 </template>
 
 <script setup lang="ts">
-import { usePageData } from "@vuepress/client";
-import type { MastermindThemePageData } from "../../shared";
 import {
   computed,
   getCurrentInstance,
@@ -35,13 +32,7 @@ import {
 import WikiListChild from "./WikiListChild.vue";
 import { WikiInfo } from "../../wiki";
 import { MaybeElementRef, unrefElement } from "@vueuse/core";
-
-const useWikiInfos = () => {
-  const page = usePageData<MastermindThemePageData>();
-  return computed(() => {
-    return page.value.wikiInfos;
-  });
-};
+import { useWikiInfos } from "../composables";
 
 const cates = useWikiInfos();
 let currentInfo: Ref<WikiInfo | null> = ref(cates.value![0].infos[0]);

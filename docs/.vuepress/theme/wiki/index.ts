@@ -70,6 +70,6 @@ export class WikiInfo {
   head = ''
   classes = {
     selected: false,
-    inactive: false
+    fade: false
   }
 }
