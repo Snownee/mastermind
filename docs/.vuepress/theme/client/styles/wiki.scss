@@ -17,7 +17,7 @@
     transition-duration: 0.3s;
     background: rgba(0,0,0,.5);
 
-    &.hide {
+    &:not(.show) {
       margin-bottom: -100vh;
       background: none;
       animation: content-mask 0s ease 0.3s forwards;

@@ -1,5 +1,5 @@
 <template>
-  <div id="content-mask" :class="{ hide }">
+  <div id="content-mask" :class="{ show }">
     <figure class="content" ref="content" @scroll="scroll">
       <slot name="top" />
 
@@ -38,8 +38,8 @@ const props = defineProps({
   },
 });
 
-const hide = computed(() => {
-  return !props.info;
+const show = computed(() => {
+  return !!props.info;
 });
 
 const content = ref(null);
