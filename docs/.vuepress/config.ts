@@ -2,6 +2,7 @@ import { defineUserConfig } from 'vuepress'
 import type { DefaultThemeOptions } from 'vuepress'
 import { path } from '@vuepress/utils'
 
+const domain = 'https://snownee.github.io'
 const base = '/mastermind/'
 
 export default defineUserConfig<DefaultThemeOptions>({
@@ -74,11 +75,26 @@ export default defineUserConfig<DefaultThemeOptions>({
       },
     ],
     'vuepress-plugin-attrs',
-    [ path.resolve(__dirname, 'plugins/info-processor') ],
+    [path.resolve(__dirname, 'plugins/info-processor')],
+    [
+      path.resolve(__dirname, 'plugins/seo'),
+      {
+        type: () => 'website',
+        title: ($page, $site) =>
+          $page.frontmatter.ogTitle || $page.frontmatter.title || $page.title || $site.title,
+        description: ($page, $site) =>
+          $page.frontmatter.description || $site.description,
+        url: (_, $site, path) =>
+          $site.themeConfig.domain + $site.base + path.substr(1),
+        image: (_, $site) =>
+          $site.themeConfig.domain + $site.base + $site.themeConfig.logo.substr(1),
+      }
+    ],
   ],
 
   theme: path.resolve(__dirname, 'theme'),
   themeConfig: {
+    domain,
     logo: '/images/hero.png',
     brandTitle: '主页',
     darkMode: false,
