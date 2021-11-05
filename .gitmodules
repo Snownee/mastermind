@@ -1,0 +1,3 @@
+[submodule "plugins/vuepress-plugin-attrs"]
+	path = docs/.vuepress/plugins/attrs
+	url = git@github.com:Snownee/vuepress-plugin-attrs.git
