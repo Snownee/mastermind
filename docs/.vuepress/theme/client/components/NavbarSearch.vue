@@ -13,6 +13,7 @@
     <input
       type="text"
       id="search-box"
+      placeholder="键入预知之物"
       :class="{ focus: text }"
       v-model="text"
     />
