@@ -13,7 +13,7 @@
     <input
       type="text"
       id="search-box"
-      placeholder="键入预知之物"
+      placeholder="键入欲知之物"
       :class="{ focus: text }"
       v-model="text"
     />

@@ -65,6 +65,12 @@ const mouseover = (info: WikiInfo) => {
 const root: Ref<HTMLElement | null> = ref(null);
 
 onMounted(() => {
+  for (const cate of cates.value!) {
+    for (const info of cate.infos) {
+      info.classes.selected = false;
+      info.classes.fade = false;
+    }
+  }
   const parts = document.URL.split("#");
   if (parts.length > 1) {
     const anchor = decodeURI(parts[1]);

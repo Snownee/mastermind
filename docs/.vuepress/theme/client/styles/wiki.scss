@@ -104,6 +104,7 @@
     overflow-y: overlay;
     scroll-behavior: smooth;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
 
     @media (max-width: ($MQMobile)) {
       padding: 1em 1em;

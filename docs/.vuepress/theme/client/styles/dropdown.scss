@@ -120,11 +120,12 @@
 
 @media (max-width: $MQMobile) {
   .dropdown-wrapper {
-    &.open .dropdown-title {
-      margin-bottom: 0.5rem;
-    }
+    // &.open .dropdown-title {
+    //   margin-bottom: 0.5rem;
+    // }
 
     .dropdown-title {
+      margin-bottom: 0.5rem;
       display: none;
     }
 
