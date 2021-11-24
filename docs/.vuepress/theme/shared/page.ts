@@ -11,7 +11,12 @@ export interface DefaultThemePageFrontmatter {
   home?: boolean
   navbar?: boolean
   pageClass?: string
+}
+
+export interface WikiPageFrontmatter
+  extends DefaultThemePageFrontmatter {
   wikiClass?: string
+  searchFilter?: any[]
 }
 
 export interface DefaultThemeHomePageFrontmatter

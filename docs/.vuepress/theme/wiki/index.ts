@@ -31,10 +31,10 @@ export const parse = (html: string, base: string): WikiCategory[] => {
           info.head += child.loc.source
         }
       }
-      if (el.tag === 'p' && info.icon === '') {
+      if (el.tag === 'p') {
         if (el.children.length === 1 && el.children[0].type === 1) {
           var child = el.children[0] as DOM.ElementNode
-          if (child.tag === 'img') {
+          if (child.tag === 'img' && info.icon === '') {
             for (const attr of child.props) {
               if (attr['name'] === 'src') {
                 info.icon = attr['value']['content']
@@ -43,6 +43,10 @@ export const parse = (html: string, base: string): WikiCategory[] => {
                 }
               }
             }
+            continue
+          }
+          if (child.tag === 'code' && info.tags.length === 0) {
+            info.tags = child.children[0]['content'].split(',')
             continue
           }
         }
@@ -68,6 +72,7 @@ export class WikiInfo {
   main = ''
   icon = ''
   head = ''
+  tags: string[] = []
   classes = {
     selected: false,
     fade: false

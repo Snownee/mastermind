@@ -228,6 +228,41 @@
     padding-left: 0.8rem;
     pointer-events: none;
   }
+
+  .filters {
+    user-select: none;
+    background: var(--c-bg-navbar);
+    opacity: 0;
+    transition: all .3s;
+    transform: translateY(-100%);
+    position: absolute;
+    z-index: -1;
+    border: 1px solid var(--c-border);
+    width: 100%;
+    overflow: hidden;
+    padding: 0 1rem;
+    box-sizing: border-box;
+
+    label {
+      display: inline-block;
+    }
+  }
+
+  &.focus:hover .filters {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &.focus {
+    #search-box {
+      width: 20rem;
+      cursor: initial;
+  
+      .mobile & {
+        width: 100vw;
+      }
+    }
+  }
 }
 
 #search-box {
@@ -245,13 +280,4 @@
   transition: all .3s;
   font: inherit;
   cursor: pointer;
-
-  &:focus, &.focus {
-    width: 20rem;
-    cursor: initial;
-
-    .mobile & {
-      width: 100vw;
-    }
-  }
 }

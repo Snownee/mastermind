@@ -6,6 +6,7 @@ import type {
   DefaultThemeNormalPageFrontmatter,
   MastermindThemePageData,
   DefaultThemePageFrontmatter,
+  WikiPageFrontmatter,
   DefaultThemePluginsOptions,
   NavbarConfig,
   NavbarGroup,
@@ -42,6 +43,7 @@ export type {
   DefaultThemePageFrontmatter,
   DefaultThemeHomePageFrontmatter,
   DefaultThemeNormalPageFrontmatter,
+  WikiPageFrontmatter,
 }
 export * from './composables'
 export * from './utils'

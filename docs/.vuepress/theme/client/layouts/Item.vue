@@ -64,7 +64,7 @@ import {
   Transition,
 } from "vue";
 import { useRouter } from "vue-router";
-import type { DefaultThemePageFrontmatter } from "../../shared";
+import type { WikiPageFrontmatter } from "../../shared";
 import Navbar from "../components/Navbar.vue";
 import Sidebar from "../components/Sidebar.vue";
 import WikiContent from "../components/WikiContent.vue";
@@ -78,7 +78,7 @@ import {
 const page = usePageData();
 //console.log(page.value.wikiInfos);
 
-const frontmatter = usePageFrontmatter<DefaultThemePageFrontmatter>();
+const frontmatter = usePageFrontmatter<WikiPageFrontmatter>();
 const themeLocale = useThemeLocaleData();
 
 // navbar

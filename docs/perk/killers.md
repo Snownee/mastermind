@@ -1,5 +1,12 @@
 ---
 layout: Perk
+searchFilter:
+  - text: 按图案
+    filters: 人形 头部 眼睛 手脚 骷髅 恶灵 动物 物品 电机 钩子
+  - text: 按最高等级颜色
+    filters: 绿色 紫色
+  - text: 按类型
+    filters: 厄咒技能 血祭品类 侦测搜索 钩子相关 血点加成 隐蔽潜伏 穷追不舍 阻碍修机 后期优势 强力压迫
 ---
 
 # 杀手技能图鉴
